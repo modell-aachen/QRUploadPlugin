@@ -1,0 +1,1 @@
+This Macro is part of [[%SYSTEMWEB%.QRUploadPlugin]].

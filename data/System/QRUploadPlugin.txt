@@ -1,0 +1,65 @@
+%META:TOPICPARENT{name="Plugins"}%
+<!--
+One line description, required for extensions repository catalog.
+   * Set SHORTDESCRIPTION = %$SHORTDESCRIPTION%
+-->
+---+!! QR Upload Plugin
+
+%SHORTDESCRIPTION%
+
+%TOC%
+
+---++ Description
+
+Renders a QR code that can be used to upload an image to a page.
+
+---++ Usage
+
+<pre>
+%QR<nop>UPLOAD%
+</pre>
+
+| *Parameter* | *Function* | *Default* |
+| =web= | Where the attachment shall be uploaded to (make this an empty string, if you want to have the web in the topic parameter). | current web |
+| =topic= | Where the attachment shall be uploaded to. | Current topic |
+| =template= | Template to expand, when the QRCode was clicked. | MobileUpload |
+| =skin= | Skin to use, when expanding the template. | =SitePreferences= |
+| =nolink= | When perl-true, the code will *not* be wrapped in an html-link, pointing to the upload handler. | wrap image in html-link |
+| =modulesize= | ModuleSize for QR code | 4 |
+| =version= | Version for QR code | 9 |
+| =multiple= | If perl-true, you will be able to select multiple files in your filebrowser (if your browser supports it) | 1 |
+| =accept= | The files the filebrowser will allow. | image/&#42; |
+
+
+---++ Configure
+| =base= | Where the upload-handler is located.%BR% _note:_ Use absolute urls, ie. *not* =%<nop>SCRIPTURL<b>PATH</b>%= | %<nop>SCRIPTURL{rest}% |
+
+---++ Apache
+
+You need to define the following rewrites for apache:
+<pre>
+<span style='color:#555'>RewriteRule ^/+bin/+view/+(.*) /$1 [L,NE,R]</span>
+<b>RewriteRule ^/+bin/+rest/+mobileupload/+(.*) /bin/rest/QRUploadPlugin/form?token=$1 [L,NE,R]</b>
+<span style='color:#555'>RewriteRule ^/+bin/+view$ / [L,NE,R]</span>
+</pre>
+
+---++ Preferences
+
+Plugin preferences should be set using =configure=, as described in
+%SYSTEMWEB%.DevelopingPlugins.
+
+---++ Installation
+%$INSTALL_INSTRUCTIONS%
+
+---++ Info
+
+|  Author: | Modell Aachen GmbH |
+|  Copyright: | 2014, Modell Aachen GmbH, All Rights Reserved |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Dependencies: |  |
+|  Version: | %$VERSION% |
+|  Release: | %$RELEASE% |
+|  Change&nbsp;History: | <!-- versions below in reverse order -->&nbsp; |
+|  1.0.0 (%$CREATEDATE%): | Initial version |
+|  Home: | http://modell-aachen.de |
+|  Support: | http://modell-aachen.de |

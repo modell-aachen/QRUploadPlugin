@@ -1,0 +1,7 @@
+!noci
+data/System/MobileUploadTemplate.txt 0644
+data/System/QRUploadPlugin.txt 0644 Documentation page
+data/System/VarQRUPLOAD.txt 0644
+lib/Foswiki/Plugins/QRUploadPlugin.pm 0444 Perl module
+lib/Foswiki/Plugins/QRUploadPlugin/Config.spec 0444 Configuration
+pub/System/QRUploadPlugin/qrupload.js 0644

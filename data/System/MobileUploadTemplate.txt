@@ -1,0 +1,20 @@
+%TMPL:INCLUDE{"view"}%
+
+%TMPL:DEF{"titleaction"}%%MAKETEXT{"Upload image to [_1]" args="%TOPICTITLE%"}%%TMPL:END%
+
+%TMPL:DEF{"script:skinbase"}%%TMPL:PREV%%TMPL:P{"LIBJS" id="QRUploadPlugin/qrupload" requires="JQUERYPLUGIN::FOSWIKI"}%%TMPL:END%
+
+%TMPL:DEF{"main"}%
+<div class="foswikiPage">
+	<div class="modacDialogContents">%TMPL:P{"patterntopiccontents"}%
+</div>
+%TMPL:END%
+
+%TMPL:DEF{"content"}%
+<form name='mobileupload' method="post" action="%QRBASE%/QRUploadPlugin/upload" enctype="multipart/form-data" >
+  <input class="qrupload filepicker" type="file" id="take-picture" accept="%QRUACCEPT%" name="filename" %QRUMULTIPLE% />
+  <input type="hidden" name="token" value="%URLPARAM{"token"}%" />
+</form>
+
+<table class="progressContainer"><thead><tr><th>File</th><th>Progress</th><th>Result</th></tr></thead><tbody></tbody></table>
+%TMPL:END%
