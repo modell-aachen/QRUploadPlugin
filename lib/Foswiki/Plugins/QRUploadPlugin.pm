@@ -105,6 +105,12 @@ sub _restForm {
         Foswiki::Func::setPreferencesValue('BASEWEB', $web);
         Foswiki::Func::setPreferencesValue('INCLUDINGWEB', $web);
     }
+    my $topic = $auth->{topic};
+    if($topic) {
+        Foswiki::Func::setPreferencesValue('TOPIC', $topic);
+        Foswiki::Func::setPreferencesValue('BASETOPIC', $topic);
+        Foswiki::Func::setPreferencesValue('INCLUDINGTOPIC', $topic);
+    }
     my $skin = $auth->{skin};
 
     my $base = $auth->{base} || die;
