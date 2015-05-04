@@ -111,6 +111,10 @@ sub _restForm {
         Foswiki::Func::setPreferencesValue('BASETOPIC', $topic);
         Foswiki::Func::setPreferencesValue('INCLUDINGTOPIC', $topic);
     }
+    my $backlink = $auth->{backlink};
+    if($backlink) {
+        Foswiki::Func::setPreferencesValue('BACKLINK', $backlink);
+    }
     my $skin = $auth->{skin};
 
     my $base = $auth->{base} || die;
@@ -159,6 +163,9 @@ sub _QRUPLOAD {
     if($attributes->{multiple}) {
         $data{multiple} = $attributes->{multiple};
     }
+    if($attributes->{backlink}) {
+        $data{backlink} = $attributes->{backlink};
+    }
     my $token = Digest::SHA::sha1_hex( encode_json( \%data ) . rand(1_000_000). rand(1_000_000) );
     unless ( $db->setAuthToken( $token, \%data ) ) {
         return '%MAKETEXT{"QRUPLOAD: Could not set token"}%'; # TODO proper error; test this
@@ -175,7 +182,7 @@ sub _QRUPLOAD {
     my $code = '<img src="data:image/png;base64,' . MIME::Base64::encode(GD::Barcode::QRcode->new($url, {ModuleSize => $modulesize, Version => $version})->plot->png, '') . '" />';
 
     unless($attributes->{nolink}) {
-        $code = '<a href="'.$url.'" title="%MAKETEXT{"Upload to [_1]" args="'."$web/$topic".'"}%">'.$code.'</a>';
+        $code = '<a href="'.$url.';link=1" title="%MAKETEXT{"Upload to [_1]" args="'."$web/$topic".'"}%">'.$code.'</a>';
     }
 
     return $code;

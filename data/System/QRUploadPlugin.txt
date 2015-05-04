@@ -29,6 +29,7 @@ Renders a QR code that can be used to upload an image to a page.
 | =version= | Version for QR code | 9 |
 | =multiple= | If perl-true, you will be able to select multiple files in your filebrowser (if your browser supports it) | 1 |
 | =accept= | The files the filebrowser will allow. | image/&#42; |
+| =backlink= | When QRCode was clicked (inside the browser), this will be appended to the form (so you can navigate back; please make this a sensible link). | |
 
 
 ---++ Configure

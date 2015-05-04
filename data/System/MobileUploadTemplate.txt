@@ -17,4 +17,6 @@
 </form>
 
 <table class="progressContainer"><thead><tr><th>File</th><th>Progress</th><th>Result</th></tr></thead><tbody></tbody></table>
+
+%IF{"defined link and defined BACKLINK" then="$percentBACKLINK$percent"}%
 %TMPL:END%
