@@ -10,6 +10,8 @@ use Foswiki::Plugins ();    # For the API version
 
 use Filesys::Virtual::Foswiki;
 
+use MIME::Base64( 'encode_base64url' );
+
 our $VERSION = '1.0';
 our $RELEASE = '1.0';
 
@@ -166,13 +168,13 @@ sub _QRUPLOAD {
     if($attributes->{backlink}) {
         $data{backlink} = $attributes->{backlink};
     }
-    my $token = Digest::SHA::sha1_hex( encode_json( \%data ) . rand(1_000_000). rand(1_000_000) );
+    my $token = encode_base64url(Digest::SHA::sha1( encode_json( \%data ) . rand(1_000_000). rand(1_000_000) ));
     unless ( $db->setAuthToken( $token, \%data ) ) {
         return '%MAKETEXT{"QRUPLOAD: Could not set token"}%'; # TODO proper error; test this
     }
 
     my $modulesize = $attributes->{modulesize} || 4;
-    my $version = $attributes->{version} || 9; # XXX do proper autodetection (the one from the module does not work)
+    my $version = $attributes->{version} || $Foswiki::cfg{Extensions}{QRUploadPlugin}{version} || 5; # XXX do proper autodetection (the one from the module does not work)
 
     my $url = "$base/mobileupload/$token";
 
