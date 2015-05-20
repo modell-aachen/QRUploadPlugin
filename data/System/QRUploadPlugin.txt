@@ -54,6 +54,10 @@ Plugin preferences should be set using =configure=, as described in
 ---++ Installation
 %$INSTALL_INSTRUCTIONS%
 
+Componentes to be installed via package-manager:
+
+<verbatim>aptitude install libgd-barcode-perl</verbatim>
+
 ---++ Info
 
 |  Author: | Modell Aachen GmbH |
