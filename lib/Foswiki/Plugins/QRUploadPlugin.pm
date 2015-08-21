@@ -106,12 +106,14 @@ sub _restForm {
         Foswiki::Func::setPreferencesValue('WEB', $web);
         Foswiki::Func::setPreferencesValue('BASEWEB', $web);
         Foswiki::Func::setPreferencesValue('INCLUDINGWEB', $web);
+        Foswiki::Func::setPreferencesValue('TARGETWEB', $web);
     }
     my $topic = $auth->{topic};
     if($topic) {
         Foswiki::Func::setPreferencesValue('TOPIC', $topic);
         Foswiki::Func::setPreferencesValue('BASETOPIC', $topic);
         Foswiki::Func::setPreferencesValue('INCLUDINGTOPIC', $topic);
+        Foswiki::Func::setPreferencesValue('TARGETTOPIC', $topic);
     }
     my $backlink = $auth->{backlink};
     if($backlink) {

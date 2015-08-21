@@ -1,8 +1,10 @@
 %TMPL:INCLUDE{"view"}%
 
-%TMPL:DEF{"titleaction"}%%MAKETEXT{"Upload image to [_1]" args="%TOPICTITLE%"}%%TMPL:END%
+%TMPL:DEF{"titleaction"}%%MAKETEXT{"Upload image to [_1]" args="%TOPICTITLE{"%TARGETWEB%.%TARGETTOPIC%"}%"}%%TMPL:END%
 
 %TMPL:DEF{"script:skinbase"}%%TMPL:PREV%%TMPL:P{"LIBJS" id="QRUploadPlugin/qrupload" requires="JQUERYPLUGIN::FOSWIKI"}%%TMPL:END%
+
+%TMPL:DEF{"attachmentsbottom"}%%FORMATLIST{"%QUERY{"'%TARGETWEB%.%TARGETTOPIC%'/attachments.name"}%" separator="" format="<div style='float:left; margin: 3px;'><a href='%PUBURLPATH%/%TARGETWEB%/%TARGETTOPIC%/$1' class='noSymbol'><img src='$percentIF{\"lc('$1')=~'\.(?:png|jpe?g|bmp|gif)$'\" then=\"%PUBURLPATH%/%TARGETWEB%/%TARGETTOPIC%/$1\" else=\"%PUBURLPATH%/%SYSTEMWEB%/AuditNGAppContrib/page_misc_%IF{"$LANGUAGE='de'" then="de" else="en"}%.png\"}$percent' style='max-width:150px;max-height:150px;' /></a></div>"}%%TMPL:END%
 
 %TMPL:DEF{"main"}%
 <div class="foswikiPage">
